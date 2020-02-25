@@ -11,6 +11,6 @@ import Alamofire
 
 public protocol APIOutputBase: class {
     init(response: DataResponse<Any>)
-    var output: Result<Data,ServiceError> { get }
+    var output: FetchedResult<Data,ServiceError> { get }
     var errorData: Any? { get }
 }

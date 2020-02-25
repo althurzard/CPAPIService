@@ -64,7 +64,7 @@ final public class APIService {
         manager.request(input.path, method: input.requestType, parameters: input.params, encoding: input.encoding, headers: input.headers).debugLog().responseJSON { completion(T(response: $0)) }
     }
     
-    fileprivate class func _upload(input: APIInputBase, completion: @escaping (Result<Data,ServiceError>)->Void) {
+    fileprivate class func _upload(input: APIInputBase, completion: @escaping (FetchedResult<Data,ServiceError>)->Void) {
         manager.upload(multipartFormData: { (formData) in
             formData.append(input.data!, withName: "file", fileName: "hahah.png", mimeType: "image/png")
         }, to: input.path, method: input.requestType , headers: input.headers) { (result) in
@@ -127,7 +127,7 @@ final public class APIService {
     /// Upload data thông qua alamofire cùng tham số đầu vào là interface APIInputBase với URL path, headers, encodingType, method. Trả về một object nếu request thành công.
     /// - parameter input: Tham số request
     /// - parameter completion: Gói dữ liệu sau khi decode từ json
-    public class func upload<T:ServiceResultBase>(input: APIInputBase, completion: @escaping ((Result<T,ServiceError>)->()) ) {
+    public class func upload<T:ServiceResultBase>(input: APIInputBase, completion: @escaping ((FetchedResult<T,ServiceError>)->()) ) {
         APIService._upload(input: input) { (result) in
             switch result {   
             case .success(let data):
@@ -215,7 +215,7 @@ final public class APIService {
     /// - parameter input: Tham số request
     /// - parameter output: Kiểu output xử lý gói dữ liệu trả về
     /// - parameter completion: Gói dữ liệu sau khi decode từ json
-    public class func request<T:ServiceResultBase, R: APIOutputBase>(input: APIInputBase, output: R.Type, completion: ((Result<T,ServiceError>)->())? = nil) {
+    public class func request<T:ServiceResultBase, R: APIOutputBase>(input: APIInputBase, output: R.Type, completion: ((FetchedResult<T,ServiceError>)->())? = nil) {
         APIService._request(input: input, output: output) {
             let output = $0.output
             switch output {
@@ -242,7 +242,7 @@ final public class APIService {
     /// - parameter input: Tham số request
     /// - parameter output: Kiểu output xử lý gói dữ liệu trả về
     /// - parameter completion: Gói dữ liệu sau khi decode từ json
-    public class func request<T:ServiceListResultBase, R: APIOutputBase>(input: APIInputBase, output: R.Type, completion: ((Result<T,ServiceError>)->())? = nil) {
+    public class func request<T:ServiceListResultBase, R: APIOutputBase>(input: APIInputBase, output: R.Type, completion: ((FetchedResult<T,ServiceError>)->())? = nil) {
         APIService._request(input: input, output: output) {
             let output = $0.output
             switch output {

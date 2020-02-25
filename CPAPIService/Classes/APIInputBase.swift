@@ -15,6 +15,12 @@ public protocol URLContructable {
     var path: String { get }
 }
 
+public extension URLContructable where Self: APIInputBase {
+    var path: String {
+        return baseURL + "\(name)"
+    }
+}
+
 public protocol APIInputBase: URLContructable {
     var headers: HTTPHeaders { get }
     var name: String { get }

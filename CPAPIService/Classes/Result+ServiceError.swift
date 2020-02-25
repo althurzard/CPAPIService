@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum Result<T, E> {
+public enum FetchedResult<T, E> {
     case success(T)
     case failure(E)
 }

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042E89FD2405017D0050B9E7 /* AppInputService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E89FC2405017D0050B9E7 /* AppInputService.swift */; };
+		042E89FF2405026F0050B9E7 /* AppOutputService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E89FE2405026F0050B9E7 /* AppOutputService.swift */; };
+		042E8A02240508490050B9E7 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E8A01240508490050B9E7 /* Job.swift */; };
+		042E8A04240508B90050B9E7 /* Paging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E8A03240508B90050B9E7 /* Paging.swift */; };
+		042E8A0624050BA70050B9E7 /* AppServiceListResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E8A0524050BA70050B9E7 /* AppServiceListResult.swift */; };
+		042E8A0824050C490050B9E7 /* JobAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E8A0724050C490050B9E7 /* JobAPIService.swift */; };
 		3F1619CD1DEFC1749BA39677 /* Pods_CPAPIService_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C9AD9A8203974CE85F41A9 /* Pods_CPAPIService_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -28,6 +34,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		042E89FC2405017D0050B9E7 /* AppInputService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInputService.swift; sourceTree = "<group>"; };
+		042E89FE2405026F0050B9E7 /* AppOutputService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOutputService.swift; sourceTree = "<group>"; };
+		042E8A01240508490050B9E7 /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
+		042E8A03240508B90050B9E7 /* Paging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paging.swift; sourceTree = "<group>"; };
+		042E8A0524050BA70050B9E7 /* AppServiceListResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppServiceListResult.swift; sourceTree = "<group>"; };
+		042E8A0724050C490050B9E7 /* JobAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobAPIService.swift; sourceTree = "<group>"; };
 		04C9AD9A8203974CE85F41A9 /* Pods_CPAPIService_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CPAPIService_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E1D8082CC1B942021540C2A /* Pods-CPAPIService_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CPAPIService_Example.release.xcconfig"; path = "Target Support Files/Pods-CPAPIService_Example/Pods-CPAPIService_Example.release.xcconfig"; sourceTree = "<group>"; };
 		518D09934041DA7B43E71F1D /* Pods-CPAPIService_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CPAPIService_Example.debug.xcconfig"; path = "Target Support Files/Pods-CPAPIService_Example/Pods-CPAPIService_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +81,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		042E8A002405083F0050B9E7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				042E8A01240508490050B9E7 /* Job.swift */,
+				042E8A03240508B90050B9E7 /* Paging.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		042E8A0924050D4E0050B9E7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				042E89FC2405017D0050B9E7 /* AppInputService.swift */,
+				042E89FE2405026F0050B9E7 /* AppOutputService.swift */,
+				042E8A0524050BA70050B9E7 /* AppServiceListResult.swift */,
+				042E8A0724050C490050B9E7 /* JobAPIService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		10A2F9AD42DAA134E04FE594 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +145,8 @@
 		607FACD21AFB9204008FA782 /* Example for CPAPIService */ = {
 			isa = PBXGroup;
 			children = (
+				042E8A0924050D4E0050B9E7 /* Services */,
+				042E8A002405083F0050B9E7 /* Model */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -333,8 +367,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				042E89FF2405026F0050B9E7 /* AppOutputService.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				042E89FD2405017D0050B9E7 /* AppInputService.swift in Sources */,
+				042E8A04240508B90050B9E7 /* Paging.swift in Sources */,
+				042E8A0824050C490050B9E7 /* JobAPIService.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				042E8A02240508490050B9E7 /* Job.swift in Sources */,
+				042E8A0624050BA70050B9E7 /* AppServiceListResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
