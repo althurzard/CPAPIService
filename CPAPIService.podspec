@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'CPAPIService'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of CPAPIService.'
+  s.summary          = 'CPAPIService is a wrapper library helps us easily manage multiple services based on Alamofire'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+CPAPIService is a wrapper library helps us easily manage multiple services based on Alamofire. It contains some base interfaces to handle API.
                        DESC
 
   s.homepage         = 'https://github.com/althurzard/CPAPIService'
@@ -28,15 +28,15 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/althurzard/CPAPIService.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
 
-  s.source_files = 'CPAPIService/Classes/**/*'
-  
+  s.source_files = 'CPAPIService/Classes/*.{h,m,swift}'
+  s.swift_versions = '4.2'
   # s.resource_bundles = {
   #   'CPAPIService' => ['CPAPIService/Assets/*.png']
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'Alamofire', '~> 4.8.0'
 end

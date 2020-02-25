@@ -1,0 +1,23 @@
+PODS:
+  - Alamofire (4.8.2)
+  - CPAPIService (0.1.0):
+    - Alamofire (~> 4.8.0)
+
+DEPENDENCIES:
+  - CPAPIService (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+
+EXTERNAL SOURCES:
+  CPAPIService:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  CPAPIService: daf547a4d0e61bb1233cc582f369ac6b1f25d68f
+
+PODFILE CHECKSUM: 7f618cc870383b98e96f00eb1e6459afedc90e27
+
+COCOAPODS: 1.8.4

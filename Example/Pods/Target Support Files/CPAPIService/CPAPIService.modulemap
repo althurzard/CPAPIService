@@ -1,0 +1,6 @@
+framework module CPAPIService {
+  umbrella header "CPAPIService-umbrella.h"
+
+  export *
+  module * { export * }
+}
