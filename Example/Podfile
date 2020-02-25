@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'CPAPIService_Example' do
+  pod 'CPAPIService', :path => '../'
+
+  target 'CPAPIService_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
