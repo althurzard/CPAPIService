@@ -25,7 +25,7 @@ public enum ServiceError : Error {
     case message(String)
     case other(Any)
     case `default`
-    var description : String {
+    public var description : String {
         switch self {
         case .network(let message):
             return message
@@ -35,11 +35,11 @@ public enum ServiceError : Error {
             return "Có lỗi xảy ra!"
         }
     }
-    var localizedDescription: String {
+    public var localizedDescription: String {
         return description
     }
     
-    var errorData: Any? {
+    public var errorData: Any? {
         switch self {
         case .other(let data):
             return data
