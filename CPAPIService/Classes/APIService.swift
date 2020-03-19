@@ -267,8 +267,8 @@ final public class APIService {
 }
 
 
-extension Request {
-    public func debugLog() -> Self {
+public extension Request {
+    func debugLog() -> Self {
         #if DEBUG
         debugPrint(self)
         #endif
