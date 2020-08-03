@@ -1,7 +1,13 @@
 PODS:
-  - Alamofire (4.8.2)
-  - CPAPIService (0.1.0):
-    - Alamofire (~> 4.8.0)
+  - Alamofire (5.0.0-rc.2)
+  - AlamofireObjectMapper (6.2.0):
+    - Alamofire (= 5.0.0-rc.2)
+    - ObjectMapper (~> 3.5.1)
+  - CPAPIService (0.1.5):
+    - Alamofire (= 5.0.0-rc.2)
+    - AlamofireObjectMapper (= 6.2.0)
+    - ObjectMapper (~> 3.5.1)
+  - ObjectMapper (3.5.3)
 
 DEPENDENCIES:
   - CPAPIService (from `../`)
@@ -9,14 +15,18 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - AlamofireObjectMapper
+    - ObjectMapper
 
 EXTERNAL SOURCES:
   CPAPIService:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  CPAPIService: daf547a4d0e61bb1233cc582f369ac6b1f25d68f
+  Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
+  AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
+  CPAPIService: 0db8b624e5fad12bbb125a4135ffd6d930703ec5
+  ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
 
 PODFILE CHECKSUM: 7f618cc870383b98e96f00eb1e6459afedc90e27
 

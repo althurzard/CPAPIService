@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CPAPIService'
-  s.version          = '0.1.5'
+  s.version          = '0.1.6'
   s.summary          = 'CPAPIService is a wrapper library helps us easily manage multiple services based on Alamofire'
 
 # This description is used to generate tags and improve search results.
@@ -38,5 +38,7 @@ CPAPIService is a wrapper library helps us easily manage multiple services based
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'Alamofire', '~> 4.8.0'
+  s.dependency 'Alamofire', '= 5.0.0-rc.2'
+  s.dependency 'ObjectMapper', '~> 3.5.1'
+  s.dependency 'AlamofireObjectMapper', '= 6.2.0'
 end

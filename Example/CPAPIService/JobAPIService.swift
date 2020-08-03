@@ -17,11 +17,8 @@ class JobAPIService {
             "page": 1,
             "page_size": 10,
             "salary_min": 0.0,
-            "salary_max": 100000,
+            "salary_max": 30000000.0,
             "session": [0,1,2,3],
-            "distance": 15,
-            "loc_lat": "10.762057",
-            "loc_lng": "106.70189",
         ]
         APIService.request(input: input,
                            output: AppOutputService.self,

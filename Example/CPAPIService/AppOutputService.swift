@@ -11,33 +11,26 @@ import CPAPIService
 import Alamofire
 
 class AppOutputService: APIOutputBase {
-    var response: DataResponse<Any>!
+    var response: AFDataResponse<Any>!
     lazy var errorData: Any? = {
         let result = response.result
-        if let dict = result.value as? [String: Any] {
+        if let dict = try? result.get() as? [String: Any] {
             return dict
         }
         return nil
     }()
     
     var output: FetchedResult<Data,ServiceError> {
-        let result = response.result
-        if result.isSuccess {
-            if let records = response.data {
-                return .success(records)
-            } else {
-                return .failure(.parser)
-            }
+        if let error = response?.error {
+            return .failure(.message(error.localizedDescription))
+        } else if let data = response?.data {
+            return .success(data)
         } else {
-            if let errorDescription = result.error?.localizedDescription {
-                return .failure(.network(errorDescription))
-            } else {
-                return .failure(.network("Network Error"))
-            }
+            return .failure(.message("Error"))
         }
     }
     
-    required init(response: DataResponse<Any>) {
+    required init(response: AFDataResponse<Any>) {
         self.response = response
     }
     

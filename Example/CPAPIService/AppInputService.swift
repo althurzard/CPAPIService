@@ -11,7 +11,10 @@ import CPAPIService
 import Alamofire
 
 class AppInputService: APIInputBase {
-    var headers: HTTPHeaders = [:]
+    var headers: HTTPHeaders = [
+        "Content-Type" : "application/json",
+        "Authorization" : "Unig eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjI2NzU2NDcxNDAsImlkIjo1LCJvcmlnX2lhdCI6MTU5NTY0NzE0MH0.mQvbuA1NkYYkRVEbtx944puOSTCkYsGax-rGUd5pLwI"
+    ]
     var baseURL: String = ""
     var name: String = ""
     var params: Parameters = [:]
