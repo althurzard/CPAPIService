@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 public protocol APIOutputBase: class {
-    init(response: AFDataResponse<Any>)
+    init(response: DataResponse<Any>)
     var output: FetchedResult<Data,ServiceError> { get }
     var errorData: Any? { get }
 }

@@ -30,7 +30,7 @@ public extension URLContructable where Self: APIInputBase {
         urlRequest.httpMethod = requestType.rawValue
     
         // setting header
-        for (key, value) in headers.dictionary {
+        for (key, value) in headers {
             urlRequest.addValue(value, forHTTPHeaderField: key)
         }
         urlRequest = try encoding.encode(urlRequest, with: params)

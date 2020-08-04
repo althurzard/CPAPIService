@@ -1,6 +1,6 @@
 {
   "name": "CPAPIService",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "summary": "CPAPIService is a wrapper library helps us easily manage multiple services based on Alamofire",
   "description": "CPAPIService is a wrapper library helps us easily manage multiple services based on Alamofire. It contains some base interfaces to handle API.",
   "homepage": "https://github.com/althurzard/CPAPIService",
@@ -13,17 +13,17 @@
   },
   "source": {
     "git": "https://github.com/althurzard/CPAPIService.git",
-    "tag": "0.1.9"
+    "tag": "0.2.0"
   },
   "platforms": {
-    "ios": "12.0"
+    "ios": "11.0"
   },
   "source_files": "CPAPIService/Classes/*.{h,m,swift}",
-  "swift_versions": "5",
+  "swift_versions": "4.2",
   "dependencies": {
     "Alamofire": [
-      "~> 5.2.1"
+      "~> 4.8.0"
     ]
   },
-  "swift_version": "5"
+  "swift_version": "4.2"
 }

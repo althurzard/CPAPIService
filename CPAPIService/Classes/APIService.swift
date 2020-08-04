@@ -11,16 +11,36 @@
 
 import Alamofire
 
-fileprivate var manager: Session = {
+fileprivate var manager: SessionManager = {
     let requestTimeout: TimeInterval = 15
     let configuration = URLSessionConfiguration.default
     configuration.timeoutIntervalForRequest = requestTimeout
-    let _manager = Session(configuration: configuration)
+    let _manager = SessionManager(configuration: configuration)
+    _manager.delegate.sessionDidReceiveChallenge = { session, challenge in
+        var disposition: URLSession.AuthChallengeDisposition = .performDefaultHandling
+        var credential: URLCredential?
+        
+        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+            disposition = .useCredential
+            credential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
+        } else {
+            if challenge.previousFailureCount > 0 {
+                disposition = .cancelAuthenticationChallenge
+            } else {
+                credential = _manager.session.configuration.urlCredentialStorage?.defaultCredential(for: challenge.protectionSpace)
+                
+                if credential != nil {
+                    disposition = .useCredential
+                }
+            }
+        }
+        return (disposition, credential)
+    }
     return _manager
 }()
 
-fileprivate var bgAlamofire: Session = {
-    return Alamofire.Session(configuration: URLSessionConfiguration.background(withIdentifier: "com.app.backgroundtransfer"))
+fileprivate var bgAlamofire: SessionManager = {
+    return Alamofire.SessionManager(configuration: URLSessionConfiguration.background(withIdentifier: "com.app.backgroundtransfer"))
 }()
 
 final public class APIService {
@@ -47,14 +67,19 @@ final public class APIService {
     fileprivate class func _upload(input: APIInputBase, completion: @escaping (FetchedResult<Data,ServiceError>)->Void) {
         manager.upload(multipartFormData: { (formData) in
             formData.append(input.data!, withName: "file", fileName: "hahah.png", mimeType: "image/png")
-        }, to: input.path, method: input.requestType , headers: input.headers).responseJSON { (result) in
-            if let error = result.error {
-                completion(.failure(.message(error.localizedDescription)))
-                debug(error.localizedDescription)
-            } else if let data = result.data {
-                completion(.success(data))
-            } else {
-                completion(.failure(.message("Error")))
+        }, to: input.path, method: input.requestType , headers: input.headers) { (result) in
+            switch result {
+                case .success( let data, _, _):
+                    data.responseJSON { response in
+                        if let data = response.data {
+                            completion(.success(data))
+                        } else {
+                            completion(.failure(.message("Error")))
+                        }
+                    }
+                case .failure(let error):
+                    completion(.failure(.message(error.localizedDescription)))
+                    debug(error.localizedDescription)
             }
         }
     }
@@ -71,17 +96,19 @@ final public class APIService {
                     formData.append(url, withName: key)
                 }
             }
-        }, to: input.path, method: input.requestType , headers: input.headers).responseJSON(completionHandler: { result in
-            if let error = result.error {
+        }, to: input.path, method: input.requestType , headers: input.headers) { (result) in
+            switch result {
+            case .success( let data, _, _):
+                data.responseJSON { response in
+                    completion(.success(T(response: response)))
+                }
+                data.uploadProgress { progress in
+                    completion(.progress(progress.fractionCompleted))
+                }
+            case .failure(let error):
                 completion(.failure(.message(error.localizedDescription)))
                 debug(error.localizedDescription)
-            } else if let _ = result.data {
-                completion(.success(T(response: result)))
-            } else {
-                completion(.failure(.message("Error")))
             }
-        }).downloadProgress { progress in
-            completion(.progress(progress.fractionCompleted))
         }
     }
     
@@ -102,7 +129,7 @@ final public class APIService {
     /// - parameter completion: Gói dữ liệu sau khi decode từ json
     public class func upload<T:ServiceResultBase>(input: APIInputBase, completion: @escaping ((FetchedResult<T,ServiceError>)->()) ) {
         APIService._upload(input: input) { (result) in
-            switch result {   
+            switch result {
             case .success(let data):
                 do {
                     let result = try T.decode(data: data)

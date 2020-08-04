@@ -11,10 +11,10 @@ import CPAPIService
 import Alamofire
 
 class AppOutputService: APIOutputBase {
-    var response: AFDataResponse<Any>!
+    var response: DataResponse<Any>!
     lazy var errorData: Any? = {
         let result = response.result
-        if let dict = try? result.get() as? [String: Any] {
+        if let dict = try? result.value as? [String: Any] {
             return dict
         }
         return nil
@@ -30,7 +30,7 @@ class AppOutputService: APIOutputBase {
         }
     }
     
-    required init(response: AFDataResponse<Any>) {
+    required init(response: DataResponse<Any>) {
         self.response = response
     }
     
