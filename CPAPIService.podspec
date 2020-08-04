@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CPAPIService'
-  s.version          = '0.1.8'
+  s.version          = '0.1.9'
   s.summary          = 'CPAPIService is a wrapper library helps us easily manage multiple services based on Alamofire'
 
 # This description is used to generate tags and improve search results.
@@ -28,10 +28,10 @@ CPAPIService is a wrapper library helps us easily manage multiple services based
   s.source           = { :git => 'https://github.com/althurzard/CPAPIService.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '12.0'
 
   s.source_files = 'CPAPIService/Classes/*.{h,m,swift}'
-  s.swift_versions = '4.2'
+  s.swift_versions = '5'
   # s.resource_bundles = {
   #   'CPAPIService' => ['CPAPIService/Assets/*.png']
   # }

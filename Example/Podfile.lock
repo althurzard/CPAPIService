@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (5.2.2)
-  - CPAPIService (0.1.6):
+  - CPAPIService (0.1.9):
     - Alamofire (~> 5.2.1)
 
 DEPENDENCIES:
@@ -16,7 +16,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
-  CPAPIService: ec004d2313bb023a3c449959f12ec7f0153af5e8
+  CPAPIService: 00433ae318b8c32fc5e776c7eb9cb111ea9ae286
 
 PODFILE CHECKSUM: 7f618cc870383b98e96f00eb1e6459afedc90e27
 
