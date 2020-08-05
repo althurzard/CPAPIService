@@ -264,6 +264,33 @@ final public class APIService {
             }
         }
     }
+    
+    /// Request API thông qua alamofire cùng tham số đầu vào là interface APIInputBase với URL path, headers, encodingType, method. Trả về danh sách object nếu request thành công.
+    /// - parameter input: Tham số request
+    /// - parameter output: Kiểu output xử lý gói dữ liệu trả về
+    /// - parameter completion: Gói dữ liệu sau khi decode từ json
+    public class func request<T:BaseModel, R: APIOutputBase>(input: APIInputBase, output: R.Type, completion: ((FetchedResult<T,ServiceError>)->())? = nil) {
+        APIService._request(input: input, output: output) {
+            let output = $0.output
+            switch output {
+            case .success(let data):
+                do {
+                    let result = try T.decode(data: data)
+                    completion?(.success(result))
+                } catch let error {
+                    completion?(.failure(.message(getDecodeError(error,input))))
+                    debug(getDecodeError(error, input))
+                }
+            case .failure(let error):
+                if input.returnErrorData, let data = $0.errorData {
+                    completion?(.failure(.other(data)))
+                } else {
+                    completion?(.failure(error))
+                }
+                debug(getErrorDescription(error, input))
+            }
+        }
+    }
 }
 
 
