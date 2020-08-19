@@ -11,39 +11,39 @@
 
 import Alamofire
 
-fileprivate var manager: SessionManager = {
-    let requestTimeout: TimeInterval = 15
-    let configuration = URLSessionConfiguration.default
-    configuration.timeoutIntervalForRequest = requestTimeout
-    let _manager = SessionManager(configuration: configuration)
-    _manager.delegate.sessionDidReceiveChallenge = { session, challenge in
-        var disposition: URLSession.AuthChallengeDisposition = .performDefaultHandling
-        var credential: URLCredential?
-        
-        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-            disposition = .useCredential
-            credential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
-        } else {
-            if challenge.previousFailureCount > 0 {
-                disposition = .cancelAuthenticationChallenge
-            } else {
-                credential = _manager.session.configuration.urlCredentialStorage?.defaultCredential(for: challenge.protectionSpace)
-                
-                if credential != nil {
-                    disposition = .useCredential
-                }
-            }
-        }
-        return (disposition, credential)
-    }
-    return _manager
-}()
-
 fileprivate var bgAlamofire: SessionManager = {
     return Alamofire.SessionManager(configuration: URLSessionConfiguration.background(withIdentifier: "com.app.backgroundtransfer"))
 }()
 
 final public class APIService {
+    
+    public private(set) static var manager: SessionManager = {
+        let requestTimeout: TimeInterval = 15
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = requestTimeout
+        let _manager = SessionManager(configuration: configuration)
+        _manager.delegate.sessionDidReceiveChallenge = { session, challenge in
+            var disposition: URLSession.AuthChallengeDisposition = .performDefaultHandling
+            var credential: URLCredential?
+            
+            if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                disposition = .useCredential
+                credential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
+            } else {
+                if challenge.previousFailureCount > 0 {
+                    disposition = .cancelAuthenticationChallenge
+                } else {
+                    credential = _manager.session.configuration.urlCredentialStorage?.defaultCredential(for: challenge.protectionSpace)
+                    
+                    if credential != nil {
+                        disposition = .useCredential
+                    }
+                }
+            }
+            return (disposition, credential)
+        }
+        return _manager
+    }()
     
     static private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     
@@ -282,6 +282,7 @@ final public class APIService {
                     debug(getDecodeError(error, input))
                 }
             case .failure(let error):
+                
                 if input.returnErrorData, let data = $0.errorData {
                     completion?(.failure(.other(data)))
                 } else {

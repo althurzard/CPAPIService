@@ -8,6 +8,8 @@
 
 import UIKit
 import CPAPIService
+import Alamofire
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -29,4 +31,3 @@ class ViewController: UIViewController {
     }
 
 }
-

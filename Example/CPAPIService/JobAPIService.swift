@@ -11,7 +11,7 @@ import CPAPIService
 class JobAPIService {
     class func getJobs(completion: @escaping (FetchedResult<AppServiceListResult<Job>,ServiceError>) -> Void) {
         let input = AppInputService()
-        input.baseURL = "https://www.unigwork.com/api/jobs"
+        input.baseURL = "https://www.unigwork.com/api/jobs/56"
         input.requestType = .get
         input.params = [
             "page": 1,
