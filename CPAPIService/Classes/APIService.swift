@@ -66,7 +66,7 @@ final public class APIService {
     
     fileprivate class func _upload(input: APIInputBase, completion: @escaping (FetchedResult<Data,ServiceError>)->Void) {
         manager.upload(multipartFormData: { (formData) in
-            formData.append(input.data!, withName: "file", fileName: "hahah.png", mimeType: "image/png")
+            formData.append(input.data!, withName: "file", fileName: "image_name.png", mimeType: "image/png")
         }, to: input.path, method: input.requestType , headers: input.headers) { (result) in
             switch result {
                 case .success( let data, _, _):
